@@ -11,7 +11,9 @@
 #import <Photos/Photos.h>
 
 @interface DetailsViewController ()
-
+{
+    UIImageView *imageView;
+}
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @end
 
@@ -19,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.navigationItem.title = @"选择照片";
     _imageArray = [NSMutableArray array];
     
@@ -33,13 +35,17 @@
     } else {
         NSLog(@"该相册中没有照片");
     }
+    
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    imageView.backgroundColor = [UIColor blackColor];
+    [self.navigationController.view addSubview:imageView];
+    imageView.hidden = YES;
 }
 
 - (void)getImageData
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-    options.resizeMode = PHImageRequestOptionsDeliveryModeFastFormat;
     // 同步获得图片, 只会返回1张图片
 //    options.synchronous = YES;
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
@@ -48,8 +54,7 @@
 
     for (PHAsset *asset in _assetArray) {
         //PHImageManagerMaximumSize
-        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            
+        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(240, 240) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                 [_imageArray addObject:result];
             if ([asset isEqual:_assetArray.lastObject]) {
                 [_collectionView reloadData];
@@ -82,10 +87,12 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return CGSizeMake(80, 80);
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.navigationItem.title = @"选择相册";
     _firstImageArray = [NSMutableArray array];
     
@@ -37,8 +37,8 @@
 - (void)getAllImageArray:(PHFetchResult<PHAsset *> *)assets
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-    options.resizeMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+//    options.resizeMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     // 同步获得图片, 只会返回1张图片
     options.synchronous = YES;
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
