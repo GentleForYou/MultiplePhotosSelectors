@@ -109,6 +109,9 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
                     
                 }
             }];
+            
+            
+            
             UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {//拍照
                 
                 AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
@@ -187,17 +190,18 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
 //获得通知里面的数据
 - (void)getAssetsData:(NSNotification *)Info
 {
-    
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    // 同步获得图片, 只会返回1张图片
-    options.synchronous = YES;
-    options.resizeMode = PHImageRequestOptionsResizeModeExact;
-    options.networkAccessAllowed = NO;
-    //PHImageManagerMaximumSize为原图尺寸, 可以自定义尺寸CGSizeMake(180, 180)
-    if ([Info.userInfo[@"assetsArray"] count] > 0) {
-        for (int i = 0; i < [Info.userInfo[@"assetsArray"] count]; i++) {
-            PHAsset *asset = Info.userInfo[@"assetsArray"][i];
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+      
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        // 同步获得图片, 只会返回1张图片
+        options.synchronous = YES;
+        options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        options.networkAccessAllowed = NO;
+        //PHImageManagerMaximumSize为原图尺寸, 可以自定义尺寸CGSizeMake(180, 180)
+        if ([Info.userInfo[@"assetsArray"] count] > 0) {
+            for (int i = 0; i < [Info.userInfo[@"assetsArray"] count]; i++) {
+                PHAsset *asset = Info.userInfo[@"assetsArray"][i];
                 [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                     
                     [_dataArray addObject:result];
@@ -207,9 +211,12 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
                     }
                     
                 }];
-
+                
+            }
         }
-    }
+        
+    }];
+    [operation start];
     
 }
 
