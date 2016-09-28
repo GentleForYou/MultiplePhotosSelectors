@@ -108,7 +108,7 @@
 {
     
     if ([_dataArray[indexPath.section][@"count"] integerValue] > 0) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CustomStoryboard" bundle:[NSBundle mainBundle]];
         DetailsViewController *detailsVC = (DetailsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
         detailsVC.number = indexPath.section;
         detailsVC.assetArray = [_dataArray[indexPath.section][@"assets"] copy];

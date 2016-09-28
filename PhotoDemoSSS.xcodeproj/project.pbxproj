@@ -26,6 +26,7 @@
 		835387BF1D9BF4A8002F692C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835387A81D9BF3D4002F692C /* DetailsViewController.m */; };
 		835387C11D9BF4A8002F692C /* SeleceAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835387AA1D9BF3D4002F692C /* SeleceAlbumViewController.m */; };
 		835387C21D9BF4A8002F692C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E65711D95182700A9B5B0 /* main.m */; };
+		835387C81D9C0740002F692C /* CustomStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835387C71D9C0740002F692C /* CustomStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		835387A91D9BF3D4002F692C /* SeleceAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeleceAlbumViewController.h; sourceTree = "<group>"; };
 		835387AA1D9BF3D4002F692C /* SeleceAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeleceAlbumViewController.m; sourceTree = "<group>"; };
 		835387C51D9BFF06002F692C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		835387C61D9C06BE002F692C /* customHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customHeader.h; sourceTree = "<group>"; };
+		835387C71D9C0740002F692C /* CustomStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 		8353879B1D9BF3D3002F692C /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				835387C61D9C06BE002F692C /* customHeader.h */,
+				835387C71D9C0740002F692C /* CustomStoryboard.storyboard */,
 				8353879C1D9BF3D3002F692C /* Cell */,
 				835387A31D9BF3D3002F692C /* NSObject */,
 				835387A61D9BF3D4002F692C /* ViewController */,
@@ -336,6 +341,7 @@
 			files = (
 				1B8E65801D95182700A9B5B0 /* LaunchScreen.storyboard in Resources */,
 				1B8E657D1D95182700A9B5B0 /* Assets.xcassets in Resources */,
+				835387C81D9C0740002F692C /* CustomStoryboard.storyboard in Resources */,
 				1B8E657B1D95182700A9B5B0 /* Main.storyboard in Resources */,
 				835387AE1D9BF3D4002F692C /* SeleAlbumTableViewCell.xib in Resources */,
 				835387AC1D9BF3D4002F692C /* DetailsCollectionViewCell.xib in Resources */,

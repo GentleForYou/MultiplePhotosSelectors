@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "SeleceAlbumViewController.h"
-#import "DetailsCollectionViewCell.h"
+
+#import "customHeader.h"
 
 static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和相册选择的)
 
@@ -92,7 +92,7 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
                     }
                     
                     if (_titleAndAssetsArray.count > 0) {
-                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CustomStoryboard" bundle:[NSBundle mainBundle]];
                         SeleceAlbumViewController *seleVC = (SeleceAlbumViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SeleceAlbumViewController"];
                         UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:seleVC];
                         seleVC.dataArray = [_titleAndAssetsArray copy];

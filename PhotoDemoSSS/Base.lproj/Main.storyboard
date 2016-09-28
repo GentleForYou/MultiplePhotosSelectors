@@ -78,94 +78,11 @@
                     <navigationItem key="navigationItem" title="首页" id="Yvj-LF-cVx"/>
                     <connections>
                         <outlet property="collectionView" destination="tJc-bJ-xPw" id="ylJ-to-Zcn"/>
-                        <segue destination="3Yk-R9-dfo" kind="modal" id="12O-gE-mxT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
-        </scene>
-        <!--Selece Album View Controller-->
-        <scene sceneID="eml-QT-khm">
-            <objects>
-                <viewController storyboardIdentifier="SeleceAlbumViewController" automaticallyAdjustsScrollViewInsets="NO" id="3Yk-R9-dfo" customClass="SeleceAlbumViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ztb-hf-77A"/>
-                        <viewControllerLayoutGuide type="bottom" id="RRW-dx-ZDE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Yol-dk-hJ1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fdu-Sc-33x">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="3Yk-R9-dfo" id="XBS-Mj-zwU"/>
-                                    <outlet property="delegate" destination="3Yk-R9-dfo" id="vUy-C5-ACz"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="fdu-Sc-33x" firstAttribute="top" secondItem="Ztb-hf-77A" secondAttribute="bottom" id="5Ke-SN-aAn"/>
-                            <constraint firstItem="RRW-dx-ZDE" firstAttribute="top" secondItem="fdu-Sc-33x" secondAttribute="bottom" id="6ft-rn-aky"/>
-                            <constraint firstAttribute="trailing" secondItem="fdu-Sc-33x" secondAttribute="trailing" id="CEY-LF-Sgh"/>
-                            <constraint firstItem="fdu-Sc-33x" firstAttribute="leading" secondItem="Yol-dk-hJ1" secondAttribute="leading" id="EGR-ON-t3L"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="fdu-Sc-33x" id="eaz-0B-7T7"/>
-                        <segue destination="Tjr-BO-0Pt" kind="push" id="qNJ-KL-d44"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WOx-6m-svu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="893" y="122"/>
-        </scene>
-        <!--Details View Controller-->
-        <scene sceneID="VxM-x7-Hba">
-            <objects>
-                <viewController storyboardIdentifier="DetailsViewController" automaticallyAdjustsScrollViewInsets="NO" id="Tjr-BO-0Pt" customClass="DetailsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mGe-RW-FW2"/>
-                        <viewControllerLayoutGuide type="bottom" id="6I5-ya-VEY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RQe-US-lnd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="U3B-78-hb4">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U6L-6z-kkf">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Tjr-BO-0Pt" id="cYi-eq-Gai"/>
-                                    <outlet property="delegate" destination="Tjr-BO-0Pt" id="rlo-LE-t36"/>
-                                    <outlet property="prefetchDataSource" destination="Tjr-BO-0Pt" id="lP0-Kx-PqN"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="U3B-78-hb4" secondAttribute="trailing" id="Fk1-c7-oqe"/>
-                            <constraint firstItem="6I5-ya-VEY" firstAttribute="top" secondItem="U3B-78-hb4" secondAttribute="bottom" id="G8f-FN-MqZ"/>
-                            <constraint firstItem="U3B-78-hb4" firstAttribute="top" secondItem="mGe-RW-FW2" secondAttribute="bottom" id="Jrn-M1-gpg"/>
-                            <constraint firstItem="U3B-78-hb4" firstAttribute="leading" secondItem="RQe-US-lnd" secondAttribute="leading" id="oZb-gI-6JO"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="5XJ-P9-E4G"/>
-                    <connections>
-                        <outlet property="collectionView" destination="U3B-78-hb4" id="inl-tQ-f6t"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IAR-b0-HrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1620" y="122"/>
         </scene>
     </scenes>
 </document>
