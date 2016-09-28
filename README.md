@@ -1,5 +1,5 @@
 # MultiplePhotosSelectors
-##多图选择器
+##多图选择器  照片选择器  相册选择
 
 自定义多图选择器,适用 iOS8以上, 兼容iOS10
 
@@ -40,7 +40,7 @@ _titleAndAssetsArray = [NSMutableArray array];
             for (int i = 0; i < [Info.userInfo[@"assetsArray"] count]; i++) {
                 PHAsset *asset = Info.userInfo[@"assetsArray"][i];
                 [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    
+                    //do something, 拿到result图片,自行处理
                     NSLog(@"%@",result);
                     
                 }];
