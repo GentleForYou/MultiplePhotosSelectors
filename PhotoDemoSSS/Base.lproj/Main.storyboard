@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h0J-iZ-3NX">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,13 +32,13 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dE9-5Z-4oF">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Oqu-YI-nzj"/>
-                                    <constraint firstAttribute="height" constant="50" id="c2h-bv-w5y"/>
+                                    <constraint firstAttribute="width" constant="120" id="77M-u4-5a5"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZHo-S5-7qt"/>
                                 </constraints>
                                 <state key="normal" title="多图选择按钮">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,15 +47,37 @@
                                     <action selector="button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KeC-r2-ycG"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tJc-bJ-xPw">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tJc-bJ-xPw" secondAttribute="height" multiplier="207:100" id="SJG-0b-59u"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iBN-SE-bAW">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="3kA-Vq-naj"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="02d-bc-Hn2"/>
+                                    <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="V3W-iW-iiD"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dE9-5Z-4oF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ett-sI-Qsd"/>
-                            <constraint firstItem="dE9-5Z-4oF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WEd-Yx-MPj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dE9-5Z-4oF" secondAttribute="bottom" constant="80" id="6I8-O6-7c2"/>
+                            <constraint firstItem="tJc-bJ-xPw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QvS-7V-WkJ"/>
+                            <constraint firstAttribute="trailing" secondItem="tJc-bJ-xPw" secondAttribute="trailing" id="XuH-gY-UBs"/>
+                            <constraint firstItem="dE9-5Z-4oF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZOo-oC-tnZ"/>
+                            <constraint firstItem="tJc-bJ-xPw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="rkm-2b-CfL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="首页" id="Yvj-LF-cVx"/>
                     <connections>
+                        <outlet property="collectionView" destination="tJc-bJ-xPw" id="ylJ-to-Zcn"/>
                         <segue destination="3Yk-R9-dfo" kind="modal" id="12O-gE-mxT"/>
                     </connections>
                 </viewController>
@@ -70,7 +94,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RRW-dx-ZDE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yol-dk-hJ1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fdu-Sc-33x">
@@ -107,7 +131,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6I5-ya-VEY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RQe-US-lnd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="U3B-78-hb4">

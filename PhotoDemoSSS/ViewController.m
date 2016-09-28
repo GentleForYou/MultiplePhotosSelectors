@@ -10,11 +10,13 @@
 #import <Photos/Photos.h>
 #import "SeleceAlbumViewController.h"
 #import "UserData.h"
+#import "DetailsCollectionViewCell.h"
 
 @interface ViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     UIImageView *imageView;
 }
+@property (nonatomic, strong) NSMutableArray *dataArray;//首页图片数据数组
 
 @property (nonatomic, strong) NSMutableArray *titleAndAssetsArray;//下个tableview的标题和图片资源
 @end
@@ -24,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _dataArray = [NSMutableArray array];
     _titleAndAssetsArray = [NSMutableArray array];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAssetsData:) name:@"PhotoAssets" object:nil];
@@ -39,6 +41,8 @@
     
     [UserData userDataStandard].photoNumber = 6;
     
+    
+    [_collectionView registerNib:[UINib nibWithNibName:@"DetailsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"DetailsCollectionViewCell"];
     
 }
 
@@ -135,7 +139,42 @@
 
 }
 
-- (void)getAssetsData:(NSNotification *)info
+
+
+#pragma mark <UICollectionViewDataSource>
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return _dataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DetailsCollectionViewCell" forIndexPath:indexPath];
+    if (_dataArray.count > 0) {
+        cell.cousomImageView.image = _dataArray[indexPath.row];
+    }
+    
+    return cell;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(80, 80);
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+
+
+
+//获得通知里面的数据
+- (void)getAssetsData:(NSNotification *)Info
 {
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
@@ -145,12 +184,16 @@
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
     options.networkAccessAllowed = NO;
     //PHImageManagerMaximumSize为原图尺寸, 可以自定义尺寸CGSizeMake(180, 180)
-    if ([info.userInfo[@"assetsArray"] count] > 0) {
-        for (int i = 0; i < [info.userInfo[@"assetsArray"] count]; i++) {
-            PHAsset *asset = info.userInfo[@"assetsArray"][i];
+    if ([Info.userInfo[@"assetsArray"] count] > 0) {
+        for (int i = 0; i < [Info.userInfo[@"assetsArray"] count]; i++) {
+            PHAsset *asset = Info.userInfo[@"assetsArray"][i];
                 [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                     
-                    NSLog(@"%@",result);
+                    [_dataArray addObject:result];
+                    
+                    if ([asset isEqual:[Info.userInfo[@"assetsArray"] lastObject]]) {
+                        [_collectionView reloadData];
+                    }
                     
                 }];
 
@@ -167,7 +210,8 @@
 //    if ([[userDefault objectForKey:@"PhotoAssets"] count] < _photoNumber) {
     
         //UIImagePickerControllerOriginalImage 原图,  UIImagePickerControllerEditedImage 裁剪过的的图
-//        [[userDefault objectForKey:@"photoArray"] addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
+        [_dataArray addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
+        [_collectionView reloadData];
         [picker dismissViewControllerAnimated:YES completion:^{
             
         }];
