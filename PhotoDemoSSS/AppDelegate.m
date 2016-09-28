@@ -16,14 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
-    
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *photoArray = [NSMutableArray array];
-    [userDefault setObject:photoArray forKey:@"photoArray"];
-    [userDefault synchronize];
-    
+
+    [[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
+
     return YES;
 }
 

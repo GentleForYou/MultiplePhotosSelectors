@@ -10,5 +10,10 @@
 
 @interface DetailsCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *cousomImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *markImageView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *markImageHeight20;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *markImageWidth20;
+
 
 @end

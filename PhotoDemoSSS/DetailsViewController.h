@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (nonatomic) NSInteger number;//第几个相册
 @property (nonatomic, strong) NSArray *assetArray;
 @end

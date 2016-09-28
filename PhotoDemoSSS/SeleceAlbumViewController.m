@@ -10,6 +10,7 @@
 #import "SeleAlbumTableViewCell.h"
 #import <Photos/Photos.h>
 #import "DetailsViewController.h"
+#import "UserData.h"
 
 @interface SeleceAlbumViewController ()
 
@@ -22,10 +23,25 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"选择相册";
-    _firstImageArray = [NSMutableArray array];
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"2"] style:UIBarButtonItemStylePlain target:self action:@selector(leftButton)];
+    self.navigationItem.leftBarButtonItem = leftBarItem;
     
-    if (_dataArray.count != 0) {
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(leftButton)];
+    self.navigationItem.rightBarButtonItem = rightBarItem;
+    
+    _firstImageArray = [NSMutableArray array];
+    if (_dataArray.count > 0) {
+        BOOL firstMark = YES;
+        if ([[UserData userDataStandard].isSeleceArray count] == 0) {
+            firstMark = YES;
+        } else {
+            firstMark = NO;
+        }
         for (NSDictionary *dic in _dataArray) {
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (firstMark) {
+                [[UserData userDataStandard].isSeleceArray addObject:tempArray];
+            }
             [self getAllImageArray:dic[@"assets"]];
         }
     }
@@ -38,7 +54,6 @@
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-//    options.resizeMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     // 同步获得图片, 只会返回1张图片
     options.synchronous = YES;
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
@@ -75,7 +90,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
      SeleAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeleAlbumTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.accessibilityNavigationStyle =
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (_dataArray.count != 0) {
         cell.rightLabel.text = _dataArray[indexPath.section][@"title"];
         cell.rightLabel2.text = [NSString stringWithFormat:@"%@张照片",_dataArray[indexPath.section][@"count"]];
@@ -93,11 +108,26 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    DetailsViewController *detailsVC = (DetailsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+    
+    if ([_dataArray[indexPath.section][@"count"] integerValue] > 0) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        DetailsViewController *detailsVC = (DetailsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+        detailsVC.number = indexPath.section;
+        detailsVC.assetArray = [_dataArray[indexPath.section][@"assets"] copy];
+        [self.navigationController pushViewController:detailsVC animated:YES];
+    } else {
+        NSLog(@"该相册内没有照片");
+    }
+    
+}
 
-    detailsVC.assetArray = [_dataArray[indexPath.section][@"assets"] copy];
-    [self.navigationController pushViewController:detailsVC animated:YES];
+- (void)leftButton
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        //发送assets数据
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"PhotoAssets" object:nil userInfo:@{@"assetsArray":[UserData userDataStandard].photoAssets}];
+
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

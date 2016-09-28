@@ -8,11 +8,15 @@
 
 #import "DetailsCollectionViewCell.h"
 
+
+
 @implementation DetailsCollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _markImageHeight20.constant = 20 * [UIScreen mainScreen].bounds.size.width/414;
+    _markImageWidth20.constant = 20 * [UIScreen mainScreen].bounds.size.width/414;
 }
 
 @end

@@ -9,10 +9,13 @@
 #import "ViewController.h"
 #import <Photos/Photos.h>
 #import "SeleceAlbumViewController.h"
+#import "UserData.h"
 
 @interface ViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+{
+    UIImageView *imageView;
+}
 
-@property (nonatomic) NSInteger photoNumber;
 @property (nonatomic, strong) NSMutableArray *titleAndAssetsArray;//下个tableview的标题和图片资源
 @end
 
@@ -21,11 +24,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //可以选择几张照片(拍照+选图的总数)
-    _photoNumber = 10;
-    _titleAndAssetsArray = [NSMutableArray array];
     
-//    [self getOriginalImages];
+    _titleAndAssetsArray = [NSMutableArray array];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAssetsData:) name:@"PhotoAssets" object:nil];
+    
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    imageView.backgroundColor = [UIColor blackColor];
+    [self.navigationController.view addSubview:imageView];
+    imageView.hidden = YES;
+    
+    
+    //可以选择几张照片(拍照+选图的总数)
+    
+    [UserData userDataStandard].photoNumber = 6;
+    
     
 }
 
@@ -33,9 +46,8 @@
 - (IBAction)button:(id)sender {
     
         __weak ViewController *weakSelf = self;
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    if ([[userDefault objectForKey:@"photoArray"] count] < _photoNumber) {
-       
+//    if ([[userDefault objectForKey:@"PhotoAssets"] count] < _photoNumber) {
+    
         UIAlertController *albumalertController = [UIAlertController alertControllerWithTitle:@"选择照片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         __block  NSUInteger sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -73,6 +85,10 @@
                 SeleceAlbumViewController *seleVC = (SeleceAlbumViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SeleceAlbumViewController"];
                 UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:seleVC];
                 seleVC.dataArray = [_titleAndAssetsArray copy];
+                
+                [UserData userDataStandard].isSeleceArray = [NSMutableArray array];
+                [UserData userDataStandard].photoAssets = [NSMutableArray array];
+                
                 [self.navigationController presentViewController:navc animated:YES completion:nil];
                 
                 
@@ -113,8 +129,32 @@
         [albumalertController addAction:cancelAction];
         [self presentViewController:albumalertController animated:YES completion:nil];
         
-    } else {
-        NSLog(@"最多只能选择%ld张图片",_photoNumber);
+//    } else {
+//        NSLog(@"最多只能选择%ld张图片",_photoNumber);
+//    }
+
+}
+
+- (void)getAssetsData:(NSNotification *)info
+{
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    // 同步获得图片, 只会返回1张图片
+    options.synchronous = YES;
+    options.resizeMode = PHImageRequestOptionsResizeModeExact;
+    options.networkAccessAllowed = NO;
+    //PHImageManagerMaximumSize为原图尺寸, 可以自定义尺寸CGSizeMake(180, 180)
+    if ([info.userInfo[@"assetsArray"] count] > 0) {
+        for (int i = 0; i < [info.userInfo[@"assetsArray"] count]; i++) {
+            PHAsset *asset = info.userInfo[@"assetsArray"][i];
+                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                    
+                    NSLog(@"%@",result);
+                    
+                }];
+
+        }
     }
     
 }
@@ -122,20 +162,23 @@
 //拍照回调
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     
     
-    if ([[userDefault objectForKey:@"photoArray"] count] < _photoNumber) {
-        
+//    if ([[userDefault objectForKey:@"PhotoAssets"] count] < _photoNumber) {
+    
         //UIImagePickerControllerOriginalImage 原图,  UIImagePickerControllerEditedImage 裁剪过的的图
-        [[userDefault objectForKey:@"photoArray"] addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
+//        [[userDefault objectForKey:@"photoArray"] addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
         [picker dismissViewControllerAnimated:YES completion:^{
             
         }];
-    }
+//    }
     
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PhotoAssets" object:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
