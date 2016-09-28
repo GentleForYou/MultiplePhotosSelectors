@@ -27,6 +27,10 @@
 		835387C11D9BF4A8002F692C /* SeleceAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835387AA1D9BF3D4002F692C /* SeleceAlbumViewController.m */; };
 		835387C21D9BF4A8002F692C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E65711D95182700A9B5B0 /* main.m */; };
 		835387C81D9C0740002F692C /* CustomStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835387C71D9C0740002F692C /* CustomStoryboard.storyboard */; };
+		835CDC0F1D9C1D0E00A2C48C /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835CDC0D1D9C1D0E00A2C48C /* 2@2x.png */; };
+		835CDC101D9C1D0E00A2C48C /* 2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835CDC0E1D9C1D0E00A2C48C /* 2@3x.png */; };
+		835CDC131D9C1D1800A2C48C /* 对号@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835CDC111D9C1D1800A2C48C /* 对号@2x.png */; };
+		835CDC141D9C1D1800A2C48C /* 对号@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835CDC121D9C1D1800A2C48C /* 对号@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,10 @@
 		835387AA1D9BF3D4002F692C /* SeleceAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeleceAlbumViewController.m; sourceTree = "<group>"; };
 		835387C61D9C06BE002F692C /* customHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customHeader.h; sourceTree = "<group>"; };
 		835387C71D9C0740002F692C /* CustomStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomStoryboard.storyboard; sourceTree = "<group>"; };
+		835CDC0D1D9C1D0E00A2C48C /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
+		835CDC0E1D9C1D0E00A2C48C /* 2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@3x.png"; sourceTree = "<group>"; };
+		835CDC111D9C1D1800A2C48C /* 对号@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对号@2x.png"; sourceTree = "<group>"; };
+		835CDC121D9C1D1800A2C48C /* 对号@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对号@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +196,10 @@
 		8353879B1D9BF3D3002F692C /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				835CDC0D1D9C1D0E00A2C48C /* 2@2x.png */,
+				835CDC0E1D9C1D0E00A2C48C /* 2@3x.png */,
+				835CDC111D9C1D1800A2C48C /* 对号@2x.png */,
+				835CDC121D9C1D1800A2C48C /* 对号@3x.png */,
 				835387C61D9C06BE002F692C /* customHeader.h */,
 				835387C71D9C0740002F692C /* CustomStoryboard.storyboard */,
 				8353879C1D9BF3D3002F692C /* Cell */,
@@ -337,8 +349,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				835CDC101D9C1D0E00A2C48C /* 2@3x.png in Resources */,
+				835CDC141D9C1D1800A2C48C /* 对号@3x.png in Resources */,
 				1B8E65801D95182700A9B5B0 /* LaunchScreen.storyboard in Resources */,
 				1B8E657D1D95182700A9B5B0 /* Assets.xcassets in Resources */,
+				835CDC0F1D9C1D0E00A2C48C /* 2@2x.png in Resources */,
+				835CDC131D9C1D1800A2C48C /* 对号@2x.png in Resources */,
 				835387C81D9C0740002F692C /* CustomStoryboard.storyboard in Resources */,
 				1B8E657B1D95182700A9B5B0 /* Main.storyboard in Resources */,
 				835387AE1D9BF3D4002F692C /* SeleAlbumTableViewCell.xib in Resources */,
