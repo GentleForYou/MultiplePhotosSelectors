@@ -22,7 +22,6 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
 @end
 
 @implementation ViewController
-#warning 1.在AppDelegate中设置photoArray,每次进入demo都是空数组 2.iOS 10 下真机NSLog打印无效,想打印的自己百度  3. ios10在infoPlist里面添加字段
 
 - (void)viewDidLoad {
     [super viewDidLoad];
