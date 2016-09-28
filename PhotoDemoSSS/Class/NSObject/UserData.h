@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray *isSeleceArray;//记录item是否选中
 @property (nonatomic, strong) NSMutableArray *photoAssets;//传出来的数据Assets
-@property (nonatomic)         unsigned int photoNumber;//最多可以选择的照片数
+@property (nonatomic)         NSInteger photoNumber;//最多可以选择的照片数
 
 @end

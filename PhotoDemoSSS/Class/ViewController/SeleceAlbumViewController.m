@@ -8,9 +8,7 @@
 
 #import "SeleceAlbumViewController.h"
 #import "SeleAlbumTableViewCell.h"
-#import <Photos/Photos.h>
 #import "DetailsViewController.h"
-#import "UserData.h"
 
 @interface SeleceAlbumViewController ()
 
@@ -104,7 +102,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 60*ScaleSize;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

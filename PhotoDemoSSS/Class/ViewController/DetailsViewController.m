@@ -8,8 +8,6 @@
 
 #import "DetailsViewController.h"
 #import "DetailsCollectionViewCell.h"
-#import <Photos/Photos.h>
-#import "UserData.h"
 
 @interface DetailsViewController ()
 
@@ -51,9 +49,9 @@
 - (void)getImageData
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     // 同步获得图片, 只会返回1张图片
-//    options.synchronous = YES;
+    options.synchronous = YES;
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
     options.networkAccessAllowed = NO;
     //CGSizeMake(180, 180)
@@ -110,7 +108,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(80, 80);
+    return CGSizeMake(80*ScaleSize, 80*ScaleSize);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
