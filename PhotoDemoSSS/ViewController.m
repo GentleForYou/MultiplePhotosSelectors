@@ -171,8 +171,6 @@
     
 }
 
-
-
 //获得通知里面的数据
 - (void)getAssetsData:(NSNotification *)Info
 {
