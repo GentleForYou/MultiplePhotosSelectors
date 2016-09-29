@@ -70,7 +70,7 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
                     [settingalertController addAction:cancelAction];
                     [settingalertController addAction:okAction];
                     [weakSelf presentViewController:settingalertController animated:YES completion:nil];
-                } else  if (status == PHAuthorizationStatusAuthorized) {//允许访问相册
+                } else {//允许访问相册
                     // 获得所有的自定义相簿
                     PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
                     // 遍历所有的自定义相簿
