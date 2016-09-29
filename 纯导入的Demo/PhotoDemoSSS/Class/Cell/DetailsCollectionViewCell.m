@@ -17,6 +17,10 @@
     // Initialization code
     _markImageHeight20.constant = 20 * ScaleSize;
     _markImageWidth20.constant = 20 * ScaleSize;
+    
+    if ([UserData userDataStandard].markImageName != nil) {
+        _markImageView.image = [UIImage imageNamed:[UserData userDataStandard].markImageName];
+    }
 }
 
 @end

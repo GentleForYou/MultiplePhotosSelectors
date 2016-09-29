@@ -21,7 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"选择相册";
+    if ([UserData userDataStandard].firstTitle != nil) {
+        self.navigationItem.title = [UserData userDataStandard].firstTitle;
+    } else {
+        self.navigationItem.title = @"选择相册";
+    }
     UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"2"] style:UIBarButtonItemStylePlain target:self action:@selector(leftButton)];
     self.navigationItem.leftBarButtonItem = leftBarItem;
     

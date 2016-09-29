@@ -99,6 +99,11 @@ static NSInteger maxNumber = 6;//能选择的最大照片数量(包括拍照和�
                         
                         [UserData userDataStandard].isSeleceArray = [NSMutableArray array];
                         [UserData userDataStandard].photoAssets = [NSMutableArray array];
+                        //自定义标题名字和标记图片的名字
+                        /* [UserData userDataStandard].firstTitle = @"选择相册";
+                         [UserData userDataStandard].twoTitle = @"选择照片";
+                         [UserData userDataStandard].markImageName = @"2";*/
+                        
                         
                         [self.navigationController presentViewController:navc animated:YES completion:nil];
                     } else {
